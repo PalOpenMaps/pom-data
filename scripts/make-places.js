@@ -1,8 +1,8 @@
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { readTXT, writeJSON } from 'https://deno.land/x/flat@0.0.15/mod.ts';
 import { csvParse, csvFormat, autoType } from "npm:d3-dsv";
 import { locs_path, places_path, redirect_path } from "./config.js";
 
-const locs = csvParse(readFileSync(locs_path, {encoding:'utf8', flag:'r'}), autoType);
+const locs = csvParse(await readTXT(locs_path), autoType);
 
 // Make geojson for all places
 const geojson = {type: "FeatureCollection", features: []};
@@ -31,13 +31,13 @@ for (const loc of locs.filter(d => !["Sinai", "Quneitra"].includes(d["district_1
   redirect.push({id_old: props.id_old, id_new: props.id, slug: props.slug})
   
   const path = `./static/data/places/${loc.slug}.json`;
-  const poha_path = `./raw-data/poha/${loc.slug}.json`;
-  if (existsSync(poha_path)) props.poha =  JSON.parse(readFileSync(poha_path, {encoding:'utf8', flag:'r'}));
-  writeFileSync(path, JSON.stringify({type: "Feature", geometry, properties: props}));
+  // const poha_path = `./raw-data/poha/${loc.slug}.json`;
+  // if (existsSync(poha_path)) props.poha =  JSON.parse(readFileSync(poha_path, {encoding:'utf8', flag:'r'}));
+  writeJSON(path, {type: "Feature", geometry, properties: props});
   console.log(`Wrote ${path}`);
 }
-writeFileSync(places_path, JSON.stringify(geojson));
+writeJSON(places_path, geojson);
 console.log(`Wrote ${places_path}`);
 
-writeFileSync(redirect_path, csvFormat(redirect.filter(r => r.id_old)));
-console.log(`Wrote ${redirect_path}`);
+// writeFileSync(redirect_path, csvFormat(redirect.filter(r => r.id_old)));
+// console.log(`Wrote ${redirect_path}`);
