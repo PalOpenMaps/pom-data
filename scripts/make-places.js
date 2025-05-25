@@ -8,7 +8,7 @@ const locs = csvParse(await readTXT(locs_path), autoType);
 const geojson = {type: "FeatureCollection", features: []};
 const redirect = [];
 
-for (const loc of locs.filter(d => !["Sinai", "Quneitra"].includes(d["district_1945"]) && d["lng"]).slice(0, 2500)) {
+for (const loc of locs.filter(d => !["Sinai", "Quneitra"].includes(d["district_1945"]) && d["lng"])) {
   const geometry = {type: "Point", coordinates: [loc["lng"], loc["lat"]]};
   const props = {
     type: loc["type_2016"] || loc["type_1945"],
@@ -33,8 +33,8 @@ for (const loc of locs.filter(d => !["Sinai", "Quneitra"].includes(d["district_1
   const path = `data/places/${loc.slug}.json`;
   // const poha_path = `raw-data/poha/${loc.slug}.json`;
   // if (existsSync(poha_path)) props.poha =  JSON.parse(readFileSync(poha_path, {encoding:'utf8', flag:'r'}));
-  writeJSON(path, {type: "Feature", geometry, properties: props});
-  console.log(`Wrote ${path}`);
+  // writeJSON(path, {type: "Feature", geometry, properties: props});
+  // console.log(`Wrote ${path}`);
 }
 writeJSON(places_path, geojson);
 console.log(`Wrote ${places_path}`);

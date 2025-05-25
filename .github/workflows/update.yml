@@ -1,0 +1,34 @@
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - .github/workflows/flat.yml
+      - scripts/make-places.js
+  schedule:
+    - cron: 0 0 * * *
+permissions:
+  contents: write
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup deno
+        uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.10.x
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - name: Fetch data
+        run: |-
+          curl https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=localities > raw-data/localities.csv
+      - name: Process data
+        run: |-
+          deno run scripts/make-places.js
+      - name: Commit changes
+        run: |-
+          git config user.name automated
+          git config user.email actions@users.noreply.github.com
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "Updated data: ${timestamp}" || exit 0
+          git push
