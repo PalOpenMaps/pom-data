@@ -9,6 +9,7 @@ const config = {};
 
 for (const key of keys) {
   const path = `raw-data/${key}.csv`;
+  
   console.log(`Reading ${path}`);
   const data = csvParse(await readTXT(path), autoType);
 
