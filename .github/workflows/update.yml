@@ -20,14 +20,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Fetch data
         run: |-
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=localities" -o "raw-data/localities.csv"
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=layers" -o "raw-data/layers.csv"
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=sheets" -o "raw-data/sheets.csv"
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=authors" -o "raw-data/authors.csv"
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=sources" -o "raw-data/sources.csv"
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=statuses" -o "raw-data/statuses.csv"
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=groups" -o "raw-data/groups.csv"
-          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=translations" -o "raw-data/translations.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=localities" -o "raw-data/localities.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=layers" -o "raw-data/layers.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=sheets" -o "raw-data/sheets.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=authors" -o "raw-data/authors.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=sources" -o "raw-data/sources.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=statuses" -o "raw-data/statuses.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=groups" -o "raw-data/groups.csv"
+          curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&sheet=translations" -o "raw-data/translations.csv"
       - name: Process data
         run: |-
           git diff --quiet raw-data/ || deno run --allow-read --allow-write --unstable scripts/make-places.js
