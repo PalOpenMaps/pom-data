@@ -8,7 +8,7 @@ const locs = csvParse(await readTXT(locs_path), autoType);
 const geojson = {type: "FeatureCollection", features: []};
 const redirect = [];
 
-for (const loc of locs.filter(d => !["Sinai", "Quneitra"].includes(d["district_1945"]) && d["lng"]).slice(0, 2000)) {
+for (const loc of locs.filter(d => !["Sinai", "Quneitra"].includes(d["district_1945"]) && d["lng"]).slice(0, 1500)) {
   const geometry = {type: "Point", coordinates: [loc["lng"], loc["lat"]]};
   const props = {
     type: loc["type_2016"] || loc["type_1945"],
