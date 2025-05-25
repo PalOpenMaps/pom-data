@@ -2,7 +2,7 @@ on:
   workflow_dispatch: {}
   push:
     paths:
-      - .github/workflows/flat.yml
+      - .github/workflows/update.yml
       - scripts/make-places.js
   schedule:
     - cron: 0 0 * * *
