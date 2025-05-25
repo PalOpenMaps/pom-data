@@ -6,6 +6,8 @@ on:
       - scripts/make-places.js
   schedule:
     - cron: 0 0 * * *
+permissions:
+  contents: write
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -15,7 +17,7 @@ jobs:
         with:
           deno-version: v1.10.x
       - name: Check out repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
       - name: Fetch data
         uses: githubocto/flat@v3
         with:
