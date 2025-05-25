@@ -1,5 +1,5 @@
 import { readTXT, writeJSON } from 'https://deno.land/x/flat@0.0.15/mod.ts';
-import { csvParse, csvFormat, autoType } from "npm:d3-dsv";
+import { csvParse, csvFormat, autoType } from "npm:d3-dsv@3.0.1";
 import { locs_path, places_path, redirect_path } from "./config.js";
 
 const locs = csvParse(await readTXT(locs_path), autoType);
