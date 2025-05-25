@@ -30,8 +30,8 @@ for (const loc of locs.filter(d => !["Sinai", "Quneitra"].includes(d["district_1
   geojson.features.push({type: "Feature", geometry, properties});
   redirect.push({id_old: props.id_old, id_new: props.id, slug: props.slug})
   
-  const path = `./static/data/places/${loc.slug}.json`;
-  // const poha_path = `./raw-data/poha/${loc.slug}.json`;
+  const path = `static/data/places/${loc.slug}.json`;
+  // const poha_path = `raw-data/poha/${loc.slug}.json`;
   // if (existsSync(poha_path)) props.poha =  JSON.parse(readFileSync(poha_path, {encoding:'utf8', flag:'r'}));
   writeJSON(path, {type: "Feature", geometry, properties: props});
   console.log(`Wrote ${path}`);

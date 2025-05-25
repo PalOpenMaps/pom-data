@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - .github/workflows/flat.yml
-      - ./scripts/make-places.js
+      - scripts/make-places.js
   schedule:
     - cron: 0 0 * * *
 jobs:
@@ -20,5 +20,5 @@ jobs:
         uses: githubocto/flat@v3
         with:
           http_url: https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=localities
-          downloaded_filename: ./raw-data/localities.csv
-          postprocess: ./scripts/make-places.js
+          downloaded_filename: raw-data/localities.csv
+          postprocess: scripts/make-places.js
