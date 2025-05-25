@@ -23,7 +23,7 @@ jobs:
           curl "https://docs.google.com/spreadsheets/d/1e7A-maXjmzd0lRcpZpeqjOmfRTZUZMOaxSYQaz_sr8I/gviz/tq?tqx=out:csv&amp;sheet=localities" -o "raw-data/localities.csv"
       - name: Process data
         run: |-
-          deno run scripts/make-places.js
+          deno run scripts/make-places.js --unstable
       - name: Commit changes
         run: |-
           git config user.name "github action"
