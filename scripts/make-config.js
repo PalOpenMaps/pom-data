@@ -9,11 +9,13 @@ const config = {};
 
 for (const key of keys) {
   const path = `raw-data/${key}.csv`;
-  
+
   console.log(`Reading ${path}`);
   const data = csvParse(await readTXT(path), autoType);
 
-  config[key] = data.map(d => {
+  config[key] = {};
+
+  for (const d of data) {
 		const row = {};
 		for (const col of data.columns) {
 			const arr = col.match(/(?<=\[)\d*(?=\])/);
@@ -30,8 +32,10 @@ for (const key of keys) {
 		for (const col of newCols) {
 			if (Array.isArray(row[col]) && row[col].every(d => !d)) row[col] = null;
 		}
-		return row;
-	});
+		
+    const rowKey = row.name_en || row.en;
+    config[key][rowKey] = row;
+	}
 }
 
 writeJSON(config_path, config);
