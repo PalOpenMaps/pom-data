@@ -1,8 +1,6 @@
 ---
 title: Get involved
 description: 
-slug: get-involved
-icon: hand
 ---
 There are a number of ways in which you can support this project.
 

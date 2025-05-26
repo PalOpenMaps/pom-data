@@ -1,8 +1,6 @@
 ---
 title: انضم/ي لنا
 description: 
-slug: get-involved
-icon: hand
 ---
 يمكنك دعم هذا المشروع من خلال عدّة طُرق.
 

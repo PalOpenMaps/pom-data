@@ -1,8 +1,6 @@
 ---
 title: About
 description: 
-slug: about
-icon: info
 ---
 **Palestine Open Maps** (POM) is a platform that allows users to explore, search and download historical maps and spatial data on Palestine. Features of POM include:
 

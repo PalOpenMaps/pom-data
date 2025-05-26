@@ -2,7 +2,7 @@ import { readTXT, writeJSON } from 'https://deno.land/x/flat@0.0.15/mod.ts';
 import { csvParse, autoType } from "https://unpkg.com/d3-dsv@3.0.1/src/index.js";
 import { config_path } from "./config.js";
 
-const keys = ["authors", "groups", "layers", "sources", "statuses", "translations"];
+const keys = ["authors", "groups", "layers", "sources", "statuses", "translations", "pages"];
 const parseForBoolean = (val) => val === "TRUE" ? true : val === "FALSE" ? false : val;
 
 const config = {};
