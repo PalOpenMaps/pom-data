@@ -35,9 +35,9 @@ jobs:
       - name: Process data
         run: |-
           git diff --quiet raw-data/ \
-            || deno run --allow-import --allow-read --allow-write --unstable scripts/make-places.js \
-            && deno run --allow-import --allow-read --allow-write --unstable scripts/make-config.js
-          deno run --allow-import --allow-read --allow-write --unstable scripts/make-pages.js
+            || deno run --allow-import --allow-read --allow-write scripts/make-places.js \
+            && deno run --allow-import --allow-read --allow-write scripts/make-config.js
+          deno run --allow-import --allow-read --allow-write scripts/make-pages.js
       - name: Commit changes
         run: |-
           git config user.name "github action"
