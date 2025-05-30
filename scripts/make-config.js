@@ -38,7 +38,7 @@ for (const key of keys) {
 	}
 	
 	if (key === "sheets") {
-		writeJSON(sheets_path, obj);
+		writeJSON(sheets_path, Object.values(obj));
 		console.log(`Wrote ${sheets_path}`);
 	} else {
 		config[key] = obj;
