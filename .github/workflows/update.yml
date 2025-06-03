@@ -4,6 +4,7 @@ on:
     paths:
       - .github/workflows/update.yml
       - scripts/make-places.js
+      - scripts/make-sheets.js
       - scripts/make-config.js
       - scripts/make-pages.js
       - raw-data/pages/**
@@ -36,6 +37,7 @@ jobs:
         run: |-
           git diff --quiet raw-data/ \
             || deno run --allow-import --allow-read --allow-write scripts/make-places.js \
+            && deno run --allow-import --allow-read --allow-write scripts/make-sheets.js \
             && deno run --allow-import --allow-read --allow-write scripts/make-config.js
           deno run --allow-import --allow-read --allow-write scripts/make-pages.js
       - name: Commit changes
